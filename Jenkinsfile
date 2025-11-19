@@ -1,32 +1,22 @@
 pipeline {
+    agent any
 
- agent any
+    tools {
+        jdk 'JAVA_HOME', 
+        maven 'M2_HOME'
+    }
 
- tools {jdk 'JAVA_HOME’, maven 'M2_HOME'}
-
- stages {
-
- stage('GIT') {
-
-           steps {
-
-               git branch: 'main',
-
-               url: ' https://github.com/walidgobji1/jenkisFile.git'
-
-          }
-
-     }
-
- stage ('Compile Stage') {
-
- steps {
-
- sh 'mvn clean compile'
-
- }
-
- }
-
- 
-
+    stages {
+        stage('GIT') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/walidgobji1/jenkisFile.git'
+            }
+        }
+        stage ('Compile Stage') {
+            steps {
+                sh 'mvn clean compile'
+            }
+        }
+    }
+}
